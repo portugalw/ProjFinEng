@@ -18,12 +18,12 @@ import { AppMainComponent } from './app.main.component';
 import { AppNotfoundComponent } from './pages/app.notfound.component';
 import { AppErrorComponent } from './pages/app.error.component';
 import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
-import { AppLoginComponent } from './pages/app.login.component';
+import { AppLoginComponent } from './login/app.login.component';
 
 export const routes: Routes = [
     { path: '', component: AppMainComponent,
         children: [
-            { path: '', component: DashboardComponent },
+            { path: 'dash', component: DashboardComponent },
             { path: 'sample', component: SampleDemoComponent },
             { path: 'forms', component: FormsDemoComponent },
             { path: 'data', component: DataDemoComponent },

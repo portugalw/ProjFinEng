@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
@@ -78,7 +78,7 @@ import { AppMainComponent } from './app.main.component';
 import { AppNotfoundComponent } from './pages/app.notfound.component';
 import { AppErrorComponent } from './pages/app.error.component';
 import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
-import { AppLoginComponent } from './pages/app.login.component';
+import { AppLoginComponent } from './login/app.login.component';
 import {AppMenuComponent, AppSubMenuComponent} from './app.menu.component';
 import {AppBreadcrumbComponent} from './app.breadcrumb.component';
 import {AppTopBarComponent} from './app.topbar.component';
@@ -104,6 +104,12 @@ import {EventService} from './demo/service/eventservice';
 import {NodeService} from './demo/service/nodeservice';
 
 import {BreadcrumbService} from './breadcrumb.service';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
+
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+
 
 @NgModule({
     imports: [
@@ -159,6 +165,7 @@ import {BreadcrumbService} from './breadcrumb.service';
         ProgressBarModule,
         RadioButtonModule,
         RatingModule,
+        ReactiveFormsModule,
         ScrollPanelModule,
         SelectButtonModule,
         SlideMenuModule,
@@ -209,7 +216,12 @@ import {BreadcrumbService} from './breadcrumb.service';
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        CarService, CountryService, EventService, NodeService, BreadcrumbService
+        CarService, CountryService, EventService, NodeService, BreadcrumbService,
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+        // provider used to create fake backend
+        fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })
