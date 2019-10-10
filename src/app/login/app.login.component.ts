@@ -30,8 +30,8 @@ export class AppLoginComponent implements OnInit {
 
   ngOnInit() {
       this.loginForm = this.formBuilder.group({
-          username: ['', Validators.required],
-          password: ['', Validators.required]
+          usuario: ['', Validators.required],
+          senha: ['', Validators.required]
       });
 
       // get return url from route parameters or default to '/'
@@ -50,7 +50,7 @@ export class AppLoginComponent implements OnInit {
       }
 
       this.loading = true;
-      this.authenticationService.login(this.f.username.value, this.f.password.value)
+      this.authenticationService.login(this.f.usuario.value, this.f.senha.value)
           .pipe(first())
           .subscribe(
               data => {

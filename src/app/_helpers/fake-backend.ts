@@ -5,8 +5,8 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '@app/_models';
 
-const users: User[] = [{ id: 1, username: 'wash', password: '1', firstName: 'Washington', lastName: 'Portugal', photo: 'avatar.png' },
-                       { id: 2, username: 'glaucio', password: '1', firstName: 'Gláucio', lastName: 'Teixeira', photo: 'avatar.png' }];
+const users: User[] = [{ id: '1', usuario: 'wash', senha: '1', nome: 'Washington', email:'', multPais:true, perfil:'' },
+                       { id: '2', usuario: 'glaucio', senha: '1', nome: 'Gláucio',  email:'', multPais:true, perfil:'' }];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -35,15 +35,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // route functions
 
         function authenticate() {
-            const { username, password } = body;
-            const user = users.find(x => x.username === username && x.password === password);
+            const { usuario, senha } = body;
+            const user = users.find(x => x.usuario === usuario && x.senha === senha);
             if (!user) return error('Username or password is incorrect');
             return ok({
                 id: user.id,
-                username: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                token: 'fake-jwt-token'
+                usuario: user.usuario,
+                nome: user.nome,
+                email: user.email,
+                token: user.token
             })
         }
 

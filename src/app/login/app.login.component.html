@@ -11,19 +11,19 @@
                     </div>
                     <div class="ui-g-12">
                         <span class="md-inputfield">
-                            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"  pInputText>
+                            <input type="text" formControlName="usuario" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }"  pInputText>
                             <label>Username</label>
-                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                                <div *ngIf="f.username.errors.required">Username is required</div>
+                            <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
+                                <div *ngIf="f.usuario.errors.required">Username is required</div>
                             </div>
                         </span>
                     </div>
                     <div class="ui-g-12">
                         <span class="md-inputfield">
-                            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" pInputText>
+                            <input type="password" formControlName="senha" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.senha.errors }" pInputText>
                             <label>Password</label>
-                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="submitted && f.senha.errors" class="invalid-feedback">
+                                <div *ngIf="f.senha.errors.required">Password is required</div>
                             </div>
                         </span>
                     </div>
