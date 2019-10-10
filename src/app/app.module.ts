@@ -109,6 +109,7 @@ import {BreadcrumbService} from './breadcrumb.service';
 import { fakeBackendProvider } from './_helpers';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { LandingComponent } from './landing/landing.component';
 
 
 @NgModule({
@@ -212,7 +213,8 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
         AppNotfoundComponent,
         AppErrorComponent,
         AppAccessdeniedComponent,
-        AppLoginComponent
+        AppLoginComponent,
+        LandingComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

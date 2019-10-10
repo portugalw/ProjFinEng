@@ -20,10 +20,12 @@ import { AppErrorComponent } from './pages/app.error.component';
 import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
 import { AppLoginComponent } from './login/app.login.component';
 
+import {AuthGuard} from './_helpers/auth.guard';
+
 export const routes: Routes = [
-    { path: '', component: AppMainComponent,
+    { path: '', component: AppMainComponent, canActivate: [AuthGuard],
         children: [
-            { path: 'dash', component: DashboardComponent },
+            { path: '', component: DashboardComponent },
             { path: 'sample', component: SampleDemoComponent },
             { path: 'forms', component: FormsDemoComponent },
             { path: 'data', component: DataDemoComponent },
