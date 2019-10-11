@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpEvent } from '@angular/common/http';
+import { BehaviorSubject, Observable,  of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
@@ -34,6 +34,24 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+    }
+
+  
+    error(message) {
+        return throwError({ error: { message } });
+    }
+
+    unauthorized() {
+        return throwError({ status: 401, error: { message: 'Unauthorised' } });
+    }
+
+    handleAuthError(error){
+        console.log(error);
+        
+        if (error.status === 401) {
+            return this.unauthorized();
+        }
+        throw   error;
     }
 
 

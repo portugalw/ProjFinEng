@@ -54,9 +54,11 @@ export class AppLoginComponent implements OnInit {
           .pipe(first())
           .subscribe(
               data => {
+                  console.log(data);
                   this.router.navigate([this.returnUrl]);
               },
               error => {
+                console.log(error);
                   this.error = error;
                   this.loading = false;
               });
